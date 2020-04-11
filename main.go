@@ -20,8 +20,6 @@ func main() {
 	flag.StringVar(&outputFile, "file", "", "path to output file")
 
 	flag.Parse()
-	//inputUrl := `https://vh-04.getcourse.ru/player/89cc32eeb182080b719abfc7f106aaaf/5b7008b4e8fab9852419a5c00e4aa618/media/720.m3u8?sid=sid&host=vh-04&cdn=1&cdn-second=0&integros-s3=1&akamai-defence=0&v=2:0:1:1`
-	//outputFile := filepath.Join("/Users/kuznetsovin/Downloads/", "4.ts")
 	if inputUrl == "" {
 		log.Fatal("url is required")
 	}
