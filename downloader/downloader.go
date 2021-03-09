@@ -2,14 +2,14 @@ package downloader
 
 import (
 	"bufio"
+	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"strings"
 )
 
-func Download(url, file string) error {
+func Download(url, file string, logChannel chan string) error {
 	// received file from server
 	resp, err := http.Get(url)
 	if err != nil {
@@ -26,7 +26,6 @@ func Download(url, file string) error {
 
 	// read server response line by line
 	scanner := bufio.NewScanner(resp.Body)
-	i := 0
 	for scanner.Scan() {
 		l := scanner.Text()
 
@@ -35,7 +34,7 @@ func Download(url, file string) error {
 			// download file part
 			part := make([]byte, 0)
 
-			resp, err := http.Get(url)
+			resp, err := http.Get(l)
 			if err != nil {
 				return err
 			}
@@ -45,10 +44,9 @@ func Download(url, file string) error {
 			}
 
 			if _, err = f.Write(part); err != nil {
-				log.Fatal("Write part to output file: ", err)
+				return err
 			}
-			log.Printf("Download part %d\n", i)
-			i++
+			logChannel <- fmt.Sprintf("Download part %s", l)
 		}
 	}
 
