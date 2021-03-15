@@ -22,3 +22,7 @@ go build -o m3u8-downloader
 ```bash
 m3u8-downloader -url <path_to_m3u8> -file <path_to_output_file>
 ```
+
+## Update for v2
+
+Version 2 use [fyne](https://fyne.io) for GUI and now doesn't support console mode.
