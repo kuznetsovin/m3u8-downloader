@@ -6,7 +6,7 @@ Downloader m3u8 files from URL. Downloader has 2 mode: `gui` and `cli`. For more
 
 1. Go get:
 ```bash
-go get -v github.com/kuznetsovin/m3u8-downloader
+go install -v github.com/kuznetsovin/m3u8-downloader@latest
 ```
 
 2. Install from source:
